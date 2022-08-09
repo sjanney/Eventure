@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Eventure</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="colorlib.com">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+
+  <style>
+    #attraction-panel {
+      display: none;
+    }
+  </style>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!--HEAD OF SEARCH RESULTS-->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+    integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+
+<!--
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA3oIgT3uyqYXp0ISRy3YvsnEadcaVLBYQ",
+    authDomain: "eventure-890d1.firebaseapp.com",
+    databaseURL: "https://eventure-890d1-default-rtdb.firebaseio.com",
+    projectId: "eventure-890d1",
+    storageBucket: "eventure-890d1.appspot.com",
+    messagingSenderId: "296037258595",
+    appId: "1:296037258595:web:19870daffd39a4b7732f56",
+    measurementId: "G-9S71HGC1S6"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+
+  
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+-->
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.9.1/firebase-app.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+
+  <!-- HEAD OF SEARCH RESULTS ENDED-->
+</head>
+
+  <body style = "background-color: black;">
+   <div class="topnav">
+      <div class="login-container">
+          <button type="button" onclick="window.location = 'user.html'" id="userBttn">Your events</button>
+      </div>
+  </div>
+
+  <div class="s01" id= "searchBg" style="background-image: url('Search_001.png');">
+    <form>
+      <fieldset>
+        <center>
+          <legend>Eventure - Find Events Near You</legend>
+        </center>
+      </fieldset>
+      <div class="inner-form" style="position: relative">
+        <div id="myDropdown" class="input-field first-wrap dropdown-content">
+          <input id="searchInputBox" type="text" placeholder="Where are you at?" onkeyup="filterFunction()" />
+          <div id="dropdownContent" class="hidden">
+          </div>
+        </div>
+        <div class="input-field third-wrap">
+          <button id="searchButton" class="btn-search" type="button">Search</button>
+        </div>
+      </div>
+    </form>
+  </div> 
+  
+  <!-- SEARCH RESULT BOX -->
+  <!--checkbox filter-->
+ <center><div id= "checkbox-filter" class="hidden">
+    <input type="checkbox" id="music" name="Concerts" value="Concerts">
+    <label for="concerts">Concerts | </label>
+    <input type="checkbox" id="sports" name="Sports" value="Sports" >
+    <label for="sports">Sports | </label>
+    <input type="checkbox" id="arts" name="Arts & Theater" value="Arts & Theater" >
+    <label for="artTheater">Arts & Theater | </label>
+    <input type="checkbox" id="miscellaneous" name="Other" value="other">
+    <label for="other">Misc.</label>
+  </div></center> 
+  <!--checkbox filter ends-->
+  
+  <div class="container hidden" id="contain">
+    <div class="row" id="row1">
+      <div id="column1" class="col-xs-6">
+    <div id='events-panel' class="panel panel-primary">
+          <div class="panel-heading" id = "panel-heading">
+            <h3 class="panel-title" id = "panel-title">Events</h3>
+          </div>
+          <div class="panel-body">
+            <div id="events" class="list-group">
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</body>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script src="cities.js"></script>
+</html>
+  
+
+  
+            
+              
+  

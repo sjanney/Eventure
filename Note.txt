@@ -1,0 +1,7 @@
+For each event object:
+1. Event title
+2. Event description (toggle)
+3. Event time 
+4. Location
+5. Image of the event
+6. Link to the event website
